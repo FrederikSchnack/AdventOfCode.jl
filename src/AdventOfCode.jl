@@ -1,10 +1,7 @@
 module AdventOfCode
 
     using BenchmarkTools
-    using Printf
-    
-    using Revise
-    
+    using Printf    
    
     include("utilities.jl")
 

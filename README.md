@@ -1,13 +1,25 @@
 # AdventOfCode.jl 
  
     [![Build Status](https://github.com/FrederikSchnack/AdventOfCode.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/FrederikSchnack/AdventOfCode.jl/actions/workflows/CI.yml?query=branch%3Amain) 
+    
 ## 2021
 | Day | Time | Number of allocations | Allocated memory |
 |----:|-----:|----------------------:|-----------------:|
-| 1 | 306.331 μs | 4003| 488.80 KiB |
-| 2 | 363.700 μs | 3009| 393.14 KiB |
-| 3 | 997.601 μs | 15143| 840.14 KiB |
-| 18 | 1.331 s | 1867703| 76.12 MiB |
+| 1 | 202.717 μs | 4003| 488.80 KiB |
+| 2 | 245.173 μs | 3009| 393.14 KiB |
+| 3 | 701.209 μs | 15143| 840.14 KiB |
+| 4 | 2.523 ms | 76444| 3.95 MiB |
+| 5 | 11.351 ms | 8047| 8.82 MiB |
+| 6 | 37.992 μs | 10| 22.73 KiB |
+| 7 | 62.626 μs | 15| 128.45 KiB |
+| 8 | 445.466 μs | 6206| 656.58 KiB |
+| 9 | 2.283 ms | 35| 380.12 KiB |
+| 10 | 127.022 μs | 351| 40.94 KiB |
+| 11 | 3.159 ms | 24| 16.59 KiB |
+| 12 | 67.468 ms | 187| 17.06 KiB |
+| 18 | 977.442 ms | 1867307| 75.71 MiB |
+| 19 | 477.149 μs | 4410| 507.11 KiB |
+
 ## 2023
 | Day | Time | Number of allocations | Allocated memory |
 |----:|-----:|----------------------:|-----------------:|

@@ -40,6 +40,15 @@ end
     @test AdventOfCode21.Day10.day10() == [168417, 2802519786]
 end
 
+@testset "Day 11" begin
+    @test AdventOfCode21.Day11.day11() == [1661, 334]
+end
+
+@testset "Day 12" begin
+    @test AdventOfCode21.Day12.day12() == [3761, 99138]
+end
+
+
 @testset "Day 18" begin
     @test AdventOfCode21.Day18.day18() == [4323, 4749]
 end

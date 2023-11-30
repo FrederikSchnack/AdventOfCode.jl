@@ -48,6 +48,26 @@ end
     @test AdventOfCode21.Day12.day12() == [3761, 99138]
 end
 
+@testset "Day 13" begin
+    @test AdventOfCode21.Day13.day13() == [708, ["#### ###  #    #  # ###  ###  #### #  #", 
+                                                 "#    #  # #    #  # #  # #  # #    #  #", 
+                                                 "###  ###  #    #  # ###  #  # ###  ####", 
+                                                 "#    #  # #    #  # #  # ###  #    #  #", 
+                                                 "#    #  # #    #  # #  # # #  #    #  #", 
+                                                 "#### ###  ####  ##  ###  #  # #    #  #"]]
+end
+
+@testset "Day 14" begin
+    @test AdventOfCode21.Day14.day14() == [2937, 3390034818249]
+end
+
+@testset "Day 15" begin
+    @test AdventOfCode21.Day15.day15() == [673, 2893]
+end
+
+@testset "Day 16" begin
+    @test AdventOfCode21.Day16.day16() == [960, 12301926782560]
+end
 
 @testset "Day 18" begin
     @test AdventOfCode21.Day18.day18() == [4323, 4749]

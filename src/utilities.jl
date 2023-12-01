@@ -62,8 +62,7 @@ function _to_markdown_table(bresults::Vector)
 end
 
 function benchmark_for_readme(years::Vector{Int}=[21, 22, 23])
-    readme = "# AdventOfCode.jl \n 
-    ![Build Status](https://github.com/FrederikSchnack/AdventOfCode.jl/actions/workflows/CI.yml/badge.svg?branch=main)    \n"
+    readme = "# AdventOfCode.jl \n![Build Status](https://github.com/FrederikSchnack/AdventOfCode.jl/actions/workflows/CI.yml/badge.svg?branch=main)    \n"
     
     for year in years
         str = _to_markdown_table(benchmark(year))

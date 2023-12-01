@@ -6,7 +6,7 @@ module AdventOfCode23
     readInput(day::Int) = AdventOfCode.readInput(day, @__DIR__)
     export readInput
 
-    solvedDays = []
+    solvedDays = [1]
 
     # Include the source files:
     for day in solvedDays
@@ -20,10 +20,10 @@ module AdventOfCode23
         dsSymbol = Symbol(@sprintf("day%02d", d))
 
         @eval begin
-            function $dsSymbol(input::String = AdventOfCode22.readInput($d))
-                return AdventOfCode22.$modSymbol.$dsSymbol(input)
+            function $dsSymbol(input::String = AdventOfCode23.readInput($d))
+                return AdventOfCode23.$modSymbol.$dsSymbol(input)
             end
             export $dsSymbol
         end
     end
-end # module AdventOfCode22
+end # module AdventOfCode23

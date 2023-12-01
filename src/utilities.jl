@@ -32,14 +32,28 @@ function benchmark(year::Int, days::Vector{Int}=Int[])
     return results
 end
 
+function append_benchmark(year::Int, day::Int)
+    bresult = benchmark(year, [day])
+
+    d, t, a, m =  bresult[1]
+    ds = @sprintf("%02d", d)
+    ts = BenchmarkTools.prettytime(t)
+    ms = BenchmarkTools.prettymemory(m)
+    line =  "\n| $ds | $ts | $a| $ms |"
+    
+    open("README.md", "a") do io
+        write(io, line)
+    end
+end
+
 # Write the benchmark results into a markdown string:
 function _to_markdown_table(bresults::Vector)
     header = "| Day | Time | Number of allocations | Allocated memory |\n" *
-             "|----:|-----:|----------------------:|-----------------:|"
+             "|----:|-----:|----------------------:|-----------------:|\n"
 
     lines = [header]
     for (d, t, a, m) in bresults
-        ds = string(d)
+        ds = @sprintf("%02d", d)
         ts = BenchmarkTools.prettytime(t)
         ms = BenchmarkTools.prettymemory(m)
         push!(lines, "| $ds | $ts | $a| $ms |")
@@ -47,7 +61,7 @@ function _to_markdown_table(bresults::Vector)
     return join(lines, "\n")
 end
 
-function benchmark_for_readme(years::Vector{Int}=[22, 21])
+function benchmark_for_readme(years::Vector{Int}=[21, 22, 23])
     readme = "# AdventOfCode.jl \n 
     ![Build Status](https://github.com/FrederikSchnack/AdventOfCode.jl/actions/workflows/CI.yml/badge.svg?branch=main)    \n"
     
@@ -62,5 +76,46 @@ function benchmark_for_readme(years::Vector{Int}=[22, 21])
         write(io, readme)
     end
 
+end
 
+function create_files(year::Int, day::Int)
+    y = string(year)
+    d = @sprintf("%02d", day)
+
+    touch("20$y/inputs/day$d.txt")
+
+    src = "20$y/src/day$d.jl"
+    touch(src)
+
+    template = """ 
+    module Day$d
+        using ..AdventOfCode$y
+
+        \"""
+            day$d()
+
+        Solves the two puzzles of day $d. 
+        \"""
+
+        function day$d(input::String = readInput($d))
+
+        end
+    end 
+
+    """
+    open(src, "a") do io
+        write(io, template)
+    end
+
+    test = """
+
+    @testset "Day $d" begin
+        @test AdventOfCode$y.Day$d.day$d() == [s0 , s1]
+    end
+
+    """
+
+    open("20$y/test/runtests.jl", "a") do io
+        write(io, test)
+    end
 end

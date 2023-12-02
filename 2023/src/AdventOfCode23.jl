@@ -6,7 +6,7 @@ module AdventOfCode23
     readInput(day::Int) = AdventOfCode.readInput(day, @__DIR__)
     export readInput
 
-    solvedDays = [1]
+    solvedDays = [1, 2]
 
     # Include the source files:
     for day in solvedDays

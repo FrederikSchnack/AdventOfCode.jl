@@ -1,5 +1,4 @@
- 
-module Day03
+ module Day03
     using ..AdventOfCode23
 
     """

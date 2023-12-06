@@ -14,7 +14,7 @@ module Day02
         s1 = 0
 
         r = r"(\d+ \w)"
-        bag = Dict{Char, Int}('g' => 0, 'r' => 0, 'b' =>0)
+        bag = Dict{Char, Int}('r' => 0, 'g' => 0, 'b' => 0)
 
         for (i, game) in enumerate(split(input, "\n"))
 
@@ -31,7 +31,7 @@ module Day02
 
             s1 += prod(values(bag))
 
-            bag['g'] = 0; bag['r'] = 0; bag['b'] = 0
+            bag['r'] = 0; bag['g'] = 0; bag['b'] = 0
         end
 
         return [s0, s1]

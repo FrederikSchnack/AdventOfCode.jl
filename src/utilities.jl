@@ -86,8 +86,7 @@ function create_files(year::Int, day::Int)
     src = "20$y/src/day$d.jl"
     touch(src)
 
-    template = """ 
-    module Day$d
+    template = """module Day$d
         using ..AdventOfCode$y
 
         \"""

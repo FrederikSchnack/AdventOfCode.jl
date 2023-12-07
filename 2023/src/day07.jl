@@ -8,7 +8,6 @@ module Day07
     Solves the two puzzles of day 07. 
     """
 
-
     struct Hand
         cards::AbstractString
         bid::Int
@@ -56,14 +55,10 @@ module Day07
 
     function card_type_0(cards::AbstractString)
         cc = counter(cards)
-        n = length(cc)
         v = prod(values(cc))
+        n = length(cc)
         
         return type_from_counter(v, n)
-    end
-
-    function isless_0(a::Hand, b::Hand)
-        return a.value_0 < b.value_0
     end
 
     function card_type_1(cards::AbstractString)
@@ -71,17 +66,12 @@ module Day07
         nj = cc['J']
         (nj == 5) && (return 7) 
         delete!(cc.map, 'J')
-        
-        val = sort(values(cc.map))
-        val[end] += nj 
-        v = prod(val)
-        n = length(val)
+
+        cc[argmax(cc)] += nj
+        v = prod(values(cc))
+        n = length(cc)
 
         return type_from_counter(v, n)::Int
-    end
-
-    function isless_1(a::Hand, b::Hand)
-        return a.value_1 < b.value_1
     end
 
     function day07(input::String = readInput(07))
@@ -91,10 +81,10 @@ module Day07
             push!(hands, Hand(input[h[1:5]], parse(Int, input[h[7:end]])))
         end
 
-        sort!(hands, lt = isless_0)
+        sort!(hands, by = x->x.value_0)
         s0 = sum(h.bid * i for (i, h) in enumerate(hands))
 
-        sort!(hands, lt = isless_1)
+        sort!(hands, by = x->x.value_1)
         s1 = sum(h.bid * i for (i, h) in enumerate(hands))
 
         return [s0, s1]

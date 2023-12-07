@@ -72,7 +72,7 @@ module Day07
         (nj == 5) && (return 7) 
         delete!(cc.map, 'J')
         
-        val = sort(values(cc))
+        val = sort(values(cc.map))
         val[end] += nj 
         v = prod(val)
         n = length(val)

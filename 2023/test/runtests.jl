@@ -52,3 +52,13 @@ end
     @test AdventOfCode23.Day11.day11() == [10033566 , 560822911938]
 end
 
+
+@testset "Day 12" begin
+    @test AdventOfCode23.Day12.day12() == [7916 , 37366887898686]
+end
+
+
+@testset "Day 13" begin
+    @test AdventOfCode23.Day13.day13() == [34911 , 33183]
+end
+

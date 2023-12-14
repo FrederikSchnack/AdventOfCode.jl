@@ -16,7 +16,6 @@ module Day12
         for (l, n) in split.(lines)
             seq = [parse(Int, nn.match) for nn in eachmatch(r"(\d+)", n)]
             l_0 = string(l)*'.'
-
             s0 += solve_step(l_0, seq, 1, 1, 0)
 
             l_1 = (l*'?')^5

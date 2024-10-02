@@ -27,6 +27,9 @@ jobs:
           - x64
     steps:
       - uses: actions/checkout@v4
+        with:           
+          ssh-key: ${{ secrets.SUBMODULE_KEY }}
+          submodules: 'recursive'
       - uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.version }}

@@ -91,9 +91,3 @@ end
 @testset "Day 19" begin
     @test AdventOfCode23.Day19.day19() == [352052 , 116606738659695]
 end
-
-
-@testset "Day 20" begin
-    @test AdventOfCode23.Day20.day20() == [s0 , s1]
-end
-

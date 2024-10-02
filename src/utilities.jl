@@ -6,8 +6,12 @@ function readInput(path::String)
     return s
 end
 
-function readInput(day::Int, directory::String)
-    path = joinpath(directory, "../inputs", @sprintf("day%02d.txt", day))
+function get_input_path(day::Int, year::Int)
+    return joinpath(@__DIR__, "../inputs",  "20"*@sprintf("%02d", year), @sprintf("day%02d.txt", day))
+end
+
+function readInput(day::Int, year::Int)
+    path = get_input_path(day, year)
     return readInput(path)
 end
 
@@ -77,11 +81,12 @@ function benchmark_for_readme(years::Vector{Int}=[21, 22, 23])
 
 end
 
-function create_files(year::Int, day::Int)
-    y = string(year)
+function create_files(day::Int, year::Int)
     d = @sprintf("%02d", day)
+    y = @sprintf("%02d", year)
 
-    touch("20$y/inputs/day$d.txt")
+    path = get_input_path(day, year)
+    touch(path)
 
     src = "20$y/src/day$d.jl"
     touch(src)

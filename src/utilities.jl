@@ -10,6 +10,15 @@ function get_input_path(day::Int, year::Int)
     return joinpath(@__DIR__, "../inputs",  "20"*@sprintf("%02d", year), @sprintf("day%02d.txt", day))
 end
 
+function get_solution_path(day::Int, year::Int)
+    return joinpath(@__DIR__, "../solutions",  "20"*@sprintf("%02d", year), "src", @sprintf("day%02d.jl", day))
+end
+
+function get_test_path(day::Int, year::Int)
+    return joinpath(@__DIR__, "../solutions",  "20"*@sprintf("%02d", year), "test", "runtests.jl")
+end
+
+
 function readInput(day::Int, year::Int)
     path = get_input_path(day, year)
     return readInput(path)
@@ -88,7 +97,7 @@ function create_files(day::Int, year::Int)
     path = get_input_path(day, year)
     touch(path)
 
-    src = "20$y/src/day$d.jl"
+    src = get_solution_path(day, year)
     touch(src)
 
     template = """module Day$d
@@ -110,6 +119,8 @@ function create_files(day::Int, year::Int)
         write(io, template)
     end
 
+    tst = get_test_path(day, year)
+
     test = """
 
     @testset "Day $d" begin
@@ -118,7 +129,8 @@ function create_files(day::Int, year::Int)
 
     """
 
-    open("20$y/test/runtests.jl", "a") do io
+    open(tst, "a") do io
         write(io, test)
     end
 end
+

@@ -9,18 +9,14 @@ module Day01
     """
 
     function day01(input::String = readInput(01))
-        lines = split(input, "\n")
-        r = r"(\d+)\s*(\d+)"
-
         left = Int[]
         right = Int[]
-
-        for l in lines
-            d1, d2 = match(r, l).captures
         
-            push!(left, parse(Int, d1))
-            push!(right, parse(Int, d2))
-        end 
+        r = r"(\d+)\s*(\d+)\n?"
+        for m in eachmatch(r, input)
+            push!(left, parse(Int, m.captures[1]))
+            push!(right, parse(Int, m.captures[2]))
+        end
 
         sort!(left)
         sort!(right)

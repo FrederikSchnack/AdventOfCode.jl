@@ -8,14 +8,12 @@ module Day02
     """
 
     function day02(input::String = readInput(02))
-        r = r"(\d+)"
-
         s0 = 0
         s1 = 0
 
         for l in split(input, "\n")
            
-            n = [parse(Int, m.match) for m in eachmatch(r, l)]
+            n = parse.(Int, split(l))
 
             if is_safe(n)
                 s0 += 1 
@@ -23,8 +21,7 @@ module Day02
             else
 
                 for k in eachindex(n)
-                    # n0 = deleteat!(copy(n), k)
-                    if is_safe(n[begin:end .!= k])
+                    if is_safe(deleteat!(copy(n), k))
                         s1 += 1
                         break
                     end
@@ -37,15 +34,15 @@ module Day02
         return [s0, s1]
     end
 
-
     function is_safe(n::Vector{Int})
-        diffs = diff(n)
+        sgn = sign(n[2] - n[1]) 
 
-        if all(@. 0 < diffs <= 3 ) || all(@. 0 > diffs >= -3) 
-            return true
-        else
-            return false
+        for i in 2:lastindex(n)
+            !(0 < sgn*(n[i] - n[i-1]) <= 3 ) && return false
         end
+
+        return true
     end
+
 
 end

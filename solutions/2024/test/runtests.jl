@@ -5,15 +5,17 @@ using AdventOfCode.AdventOfCode24
 end
 
 @testset "Day 02" begin
-    @test AdventOfCode24.Day02.day02() == [356 , 413]
+    @test AdventOfCode24.Day02.day02() == [356, 413]
 end
 
 @testset "Day 03" begin
-    @test AdventOfCode24.Day03.day03() == [162813399 , 53783319]
+    @test AdventOfCode24.Day03.day03() == [162813399, 53783319]
 end
-
 
 @testset "Day 04" begin
-    @test AdventOfCode24.Day04.day04() == [s0 , s1]
+    @test AdventOfCode24.Day04.day04() == [2554, 1916]
 end
 
+@testset "Day 05" begin
+    @test AdventOfCode24.Day05.day05() == [5651, 4743]
+end

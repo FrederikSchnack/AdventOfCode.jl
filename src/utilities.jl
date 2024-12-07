@@ -131,4 +131,3 @@ function create_files(day::Int, year::Int)
         write(io, test)
     end
 end
-

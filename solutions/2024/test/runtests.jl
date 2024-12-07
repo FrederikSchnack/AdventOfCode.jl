@@ -20,5 +20,9 @@ end
     @test AdventOfCode24.Day05.day05() == [5651, 4743]
 end
 @testset "Day 06" begin
-    @test AdventOfCode24.Day06.day06() == [s0, s1]
+    @test AdventOfCode24.Day06.day06() == [5531, 2165]
+end
+
+@testset "Day 07" begin
+    @test AdventOfCode24.Day07.day07() == [975671981569, 223472064194845]
 end

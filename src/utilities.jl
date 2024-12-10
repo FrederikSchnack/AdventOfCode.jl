@@ -61,7 +61,7 @@ end
 # Write the benchmark results into a markdown string:
 function _to_markdown_table(bresults::Vector)
     header = "| Day | Time | Number of allocations | Allocated memory |\n" *
-             "|----:|-----:|----------------------:|-----------------:|\n"
+             "|----:|-----:|----------------------:|-----------------:|"
 
     lines = [header]
     for (d, t, a, m) in bresults

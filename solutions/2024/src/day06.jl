@@ -10,90 +10,54 @@ module Day06
     function day06(input::String = readInput(06))
         lines = split(input)
         grid = [lines[i][j] for i in eachindex(lines), j in eachindex(lines[1])]
-        obs =  Set(findall(==('#'), grid))
+
+        obs = findall(==('#'), grid)
         pos = findfirst(==('^'), grid)
 
-        G = Guard(pos, 
-                CartesianIndex(-1,0), 
-                Dict{CartesianIndex{2}, Set{CartesianIndex{2}}}( pos => Set([CartesianIndex(-1,0)]) ), 
-                obs)
+        dir = CartesianIndex(-1,0)
+        visited = Set{CartesianIndex{2}}([pos])
 
-        move!(G, grid)
-        s0 = length(G.visited)
+        move!(grid, pos, dir, visited, obs)
+        s0 = length(visited)
 
-        blocks = Set{CartesianIndex{2}}()
         s1 = 0
-        for (gpos, setdir) in G.visited
-            for gdir in setdir
-                b = gpos + gdir
+        for b in visited
 
-                if b in blocks || b in obs
-                    continue
-                end
-                push!(blocks, b)
+            b in obs && continue
+            push!(obs, b)
 
-                F = Guard(pos, 
-                        CartesianIndex(-1,0),
-                        Dict{CartesianIndex{2}, Set{CartesianIndex{2}}}( pos => Set([CartesianIndex(-1,0)]) ),
-                        union(Set([b]), obs))
+            new_visited = Set{Tuple{CartesianIndex{2},CartesianIndex{2}}}([(pos,dir)])
 
-                if isloop(F, grid) 
-                    (s1 += 1)
-                end
-            end
+            isloop(grid, pos, dir, new_visited,  obs) && (s1 += 1)
+
+            pop!(obs)
+
         end
       
 
-
-        
         return [s0, s1]
     end
 
-    mutable struct Guard
-        pos::CartesianIndex{2}
-        dir::CartesianIndex{2}
-        visited::Dict{CartesianIndex{2}, Set{CartesianIndex{2}}}
-        obs::Set{CartesianIndex{2}}
-    end
 
-
-    function move!(G::Guard, grid::Matrix{Char})
+    function move!(grid::Matrix{Char}, pos::CartesianIndex{2}, dir::CartesianIndex{2}, visited::Set{CartesianIndex{2}}, obs::Vector{CartesianIndex{2}})
             
-        while checkbounds(Bool, grid, G.pos+G.dir)
-            if G.pos+G.dir ∈ G.obs
-                G.dir = turn[G.dir]
-            else
-                G.pos += G.dir
-            end
+        while checkbounds(Bool, grid, pos+dir)
 
-            if haskey(G.visited, G.pos)
-                push!(G.visited[G.pos], G.dir)
-            else
-                G.visited[G.pos] = Set([G.dir])
-            end
+            pos+dir ∈ obs ? (dir = turn[dir]) : (pos += dir)
+            push!(visited, pos)
 
         end
         
     end
     
-    function isloop(G::Guard, grid::Matrix{Char})
-        
-        while checkbounds(Bool, grid, G.pos+G.dir)
+    function isloop(grid::Matrix{Char}, pos::CartesianIndex{2}, dir::CartesianIndex{2}, visited::Set{Tuple{CartesianIndex{2},CartesianIndex{2}}}, obs::Vector{CartesianIndex{2}})
+            
+        while checkbounds(Bool, grid, pos+dir)
 
-
-            if G.pos+G.dir ∈ G.obs
-                G.dir = turn[G.dir]
-            else
-                G.pos += G.dir
-            end
-        
-            if haskey(G.visited, G.pos)
-                G.dir ∈ G.visited[G.pos] && return true
-                push!(G.visited[G.pos], G.dir)
-            else
-                G.visited[G.pos] = Set([G.dir])
-            end
-
+            pos+dir ∈ obs ? (dir = turn[dir]) : (pos += dir)
+            (pos, dir) ∈ visited && return true
+            push!(visited, (pos, dir))
+    
         end   
 
         return false

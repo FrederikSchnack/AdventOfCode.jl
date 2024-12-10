@@ -36,5 +36,5 @@ end
 end
 
 @testset "Day 10" begin
-    @test AdventOfCode24.Day10.day10() == [s0, s1]
+    @test AdventOfCode24.Day10.day10() == [593, 1192]
 end

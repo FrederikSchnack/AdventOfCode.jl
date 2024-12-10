@@ -35,7 +35,7 @@ function benchmark(year::Int, days::Vector{Int}=Int[])
     for day in days
         modSymbol = Symbol(@sprintf("Day%02d", day))
         fSymbol = Symbol(@sprintf("day%02d", day))
-        input = readInput(joinpath(@__DIR__,"..", "20"*@sprintf("%02d", year), "inputs", @sprintf("day%02d.txt", day)))
+        input = readInput(get_input_path(day, year))
         @eval begin
             bresult = @benchmark(AdventOfCode.$ySymbol.$modSymbol.$fSymbol($input))
         end

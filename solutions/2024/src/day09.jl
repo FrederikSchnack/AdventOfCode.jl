@@ -24,8 +24,8 @@ module Day09
            fill_id!(d, ids, k)
            fill_id!(d1, ids1, k)
 
-            fill_gaps0!(d, ids, gaps, k)
-            fill_gaps1!(d1, ids1, gaps1, k)
+            fill_gaps0!(d, ids, gaps, k, maxid)
+            fill_gaps1!(d1, ids1, gaps1, k, maxid)
         end 
         
         s0 = checksum(d)
@@ -55,7 +55,7 @@ module Day09
 
     end
 
-    function fill_gaps1!(d::Vector{Int}, ids::Dict{Int, Int}, gaps::Dict{Int, Vector{Int}}, k::Int)
+    function fill_gaps1!(d::Vector{Int}, ids::Dict{Int, Int}, gaps::Dict{Int, Vector{Int}}, k::Int, maxid::Int)
 
         for g in gaps[k]
             l = g
@@ -98,7 +98,7 @@ module Day09
 
     end
 
-    function fill_gaps0!(d::Vector{Int}, ids::Dict{Int, Int}, gaps::Dict{Int, Vector{Int}}, k::Int)
+    function fill_gaps0!(d::Vector{Int}, ids::Dict{Int, Int}, gaps::Dict{Int, Vector{Int}}, k::Int, maxid::Int)
 
         for g in gaps[k]
             l = g  

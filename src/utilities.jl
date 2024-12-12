@@ -44,7 +44,7 @@ function benchmark(year::Int, days::Vector{Int}=Int[])
     return results
 end
 
-function append_benchmark(year::Int, day::Int)
+function append_benchmark(day::Int, year::Int)
     bresult = benchmark(year, [day])
 
     d, t, a, m =  bresult[1]

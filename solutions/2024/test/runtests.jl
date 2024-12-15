@@ -54,3 +54,7 @@ end
 @testset "Day 14" begin
     @test AdventOfCode24.Day14.day14() == [230436441, 8270]
 end
+
+@testset "Day 15" begin
+    @test AdventOfCode24.Day15.day15() == [1514353, 1533076]
+end

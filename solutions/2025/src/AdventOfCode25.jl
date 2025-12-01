@@ -8,7 +8,7 @@ module AdventOfCode25
     readInput(day::Int) = AdventOfCode.readInput(day, year)
     export readInput
 
-    solvedDays = []
+    solvedDays = [1, ]
 
     # Include the source files:
     for day in solvedDays

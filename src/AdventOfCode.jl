@@ -9,4 +9,5 @@ module AdventOfCode
     include(joinpath(@__DIR__, "../solutions/2022/src/AdventOfCode22.jl"))
     include(joinpath(@__DIR__, "../solutions/2023/src/AdventOfCode23.jl"))
     include(joinpath(@__DIR__, "../solutions/2024/src/AdventOfCode24.jl"))
+    include(joinpath(@__DIR__, "../solutions/2025/src/AdventOfCode25.jl"))
 end

@@ -14,8 +14,8 @@ module Day02
         for l in split(input, ",")
             a, b = parse.(Int, split(l, "-"))
 
-            s0 += extend(a, b, true)
-            s1 += extend(a, b)
+            s0 += extend(a, b)
+            s1 += extend(a, b, false)
 
         end
 
@@ -23,7 +23,7 @@ module Day02
     end
 
 
-    function extend(a::Int, b::Int, part1::Bool)
+    function extend(a::Int, b::Int, part1=true::Bool)
 
         s = Set{Int}()
 

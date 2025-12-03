@@ -12,3 +12,11 @@ end
 @testset "2023" begin
     include("../solutions/2023/test/runtests.jl")
 end
+
+@testset "2024" begin
+    include("../solutions/2024/test/runtests.jl")
+end
+
+@testset "2025" begin
+    include("../solutions/2025/test/runtests.jl")
+end

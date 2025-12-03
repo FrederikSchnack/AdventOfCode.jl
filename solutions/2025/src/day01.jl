@@ -33,4 +33,3 @@ module Day01
         return [s0, s0+s1]
     end
 end 
-

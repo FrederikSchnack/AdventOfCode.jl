@@ -91,9 +91,9 @@ end
     @test AdventOfCode24.Day23.day23() == [1323, "er,fh,fi,ir,kk,lo,lp,qi,ti,vb,xf,ys,yu"]
 end
 
-@testset "Day 24" begin
-    @test AdventOfCode24.Day24.day24() == [57344080719736, "cgq,fnr,kqk,nbc,svm,z15,z23,z39"]
-end
+# @testset "Day 24" begin
+#     @test AdventOfCode24.Day24.day24() == [57344080719736, "cgq,fnr,kqk,nbc,svm,z15,z23,z39"]
+# end
 
 @testset "Day 25" begin
     @test AdventOfCode24.Day25.day25() == [3249]

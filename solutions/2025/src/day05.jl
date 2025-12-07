@@ -61,12 +61,10 @@ module Day05
 
     function sum_tree(tree::Node)
         s = tree.val[2] - tree.val[1] + 1
-        isnothing(tree.left) || (s += sum_tree!(tree.left))
-        isnothing(tree.right) || (s += sum_tree!(tree.right))
+        isnothing(tree.left) || (s += sum_tree(tree.left))
+        isnothing(tree.right) || (s += sum_tree(tree.right))
         return s
     end
 
 end
     
-
-

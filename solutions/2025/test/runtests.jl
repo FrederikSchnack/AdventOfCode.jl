@@ -15,7 +15,6 @@ end
 @testset "Day 04" begin
     @test AdventOfCode25.Day04.day04() == [1441, 9050]
 end
-
 @testset "Day 05" begin
     @test AdventOfCode25.Day05.day05() == [707, 361615643045059]
 end

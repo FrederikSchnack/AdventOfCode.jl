@@ -31,12 +31,17 @@ module Day08
 
         s0 = c |> values |> collect |> sort! |> x -> prod(x[end-2:end])
 
+        last_a = 0
+        last_b = 0
         while num_groups(Q) > 1
             (_, a, b) = heappop!(edges)
             union!(Q, a, b)
+
+            last_a = a
+            last_b = b
         end
 
-        s1 = coords[a][1] * coords[b][1]
+        s1 = coords[last_a][1] * coords[last_b][1]
 
         return [s0, s1]
     end

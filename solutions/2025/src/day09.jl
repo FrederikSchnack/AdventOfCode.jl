@@ -27,8 +27,6 @@ module Day09
         s1 = 0 
         n = length(tiles)
 
-        edges = zip(tiles, circshift(tiles, -1))
-
         for i in 1:n
             for j in i+1:n 
 
@@ -36,7 +34,8 @@ module Day09
                 s0 = max(s0, curr_v)
 
                 if curr_v > s1 
-                    box_green(tiles[i], tiles[j], edges) && (s1 = curr_v)
+                    box_green(i, j, tiles) && (s1 = curr_v)
+
                 end
 
             end
@@ -45,19 +44,29 @@ module Day09
         return s0, s1
     end
 
-    function box_green(a::Tuple{Int, Int}, b::Tuple{Int, Int}, edges::Base.Iterators.Zip{Tuple{Vector{Tuple{Int64, Int64}}, Vector{Tuple{Int64, Int64}}}})
+    function box_green(i::Int, j::Int, tiles::Vector{Tuple{Int64, Int64}})
         
-        x_min = min(a[1], b[1])
-        x_max = max(a[1], b[1])
-        y_min = min(a[2], b[2])
-        y_max = max(a[2], b[2])
+        x_min, x_max = min(tiles[i][1], tiles[j][1]), max(tiles[i][1], tiles[j][1])
+        y_min, y_max = min(tiles[i][2], tiles[j][2]), max(tiles[i][2], tiles[j][2])
 
-        for ((e1, e2), (f1, f2)) in edges
+        n = length(tiles)
 
-            if !( max( e1, f1 ) <= x_min || x_max <= min( e1, f1) || max(e2, f2) <= y_min || y_max <= min(e2, f2) )
+        for i in 1:n-1
+
+            ex_min, ex_max = min(tiles[i][1], tiles[i+1][1]), max(tiles[i][1], tiles[i+1][1])
+            ey_min, ey_max = min(tiles[i][2], tiles[i+1][2]), max(tiles[i][2], tiles[i+1][2])
+
+            if !(ex_max <= x_min || x_max <= ex_min || ey_min <= y_min || y_max <= ey_max)
                 return false
             end
 
+        end
+
+        ex_min, ex_max = min(tiles[n][1], tiles[1][1]), max(tiles[n][1], tiles[1][1])
+        ey_min, ey_max = min(tiles[n][2], tiles[1][2]), max(tiles[n][2], tiles[1][2])
+
+        if !(ex_max <= x_min || x_max <= ex_min || ey_min <= y_min || y_max <= ey_max)
+            return false
         end
 
         return true
